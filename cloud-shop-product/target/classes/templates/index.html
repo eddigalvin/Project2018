@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>cloudshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+     <h2>Products Products Products</h2>	
+     
+     <div ng-app="myApp2" ng-controller="myCtrl2"> 
+
+PRODUCTS BELOW HERE
+
+<p>Today's welcome message is:</p>
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<script>
+var app = angular.module('myApp2', []);
+app.controller('myCtrl2', function($scope, $http) {
+    $http({
+        method : "GET",
+        url : "http://127.0.0.1:8090/order/all"
+    }).then(function mySuccess(response) {
+        $scope.myWelcome = response.data;
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+});
+
+var app1 = angular.module('myApp1', []);
+app.controller('myCtrl1', function($scope, $http) {
+    $http.get("http://localhost:8090/order/all")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</script>
+    
+     
+</body>
+</html>

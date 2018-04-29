@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: cloud-shop-products
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Eddie
+Implementation-Vendor-Id: com.springboot.cloud-shop
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/cloud-shop.p
+ roducts-microservice/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

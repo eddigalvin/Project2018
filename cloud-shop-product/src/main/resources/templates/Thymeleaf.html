@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+
+<link href="prod.css" rel="stylesheet"/>
+</head>
+<body>
+<h2>CLOUD SHOP PRODUCTS TABLE</h2>
+  <table> 
+  <tr><th>Product Id</th>
+  <th> Name</th>
+  <th> Description</th>
+  <th> Category</th>
+  <th> Stock</th>
+  <th> Price</th>
+  </tr>
+  <tr th:each="product : ${prods}">
+        <td th:text="${product.product_Id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}">Text ...</td>
+        <td th:text="${product.cat}"></td>
+        <td th:text="${product.stock}"></td>
+        <td th:text="${product.price}">Text ...</td>
+    </tr> 
+    </table>  
+    
+   
+    
+   
+    
+</body>
+</html>
+
+  

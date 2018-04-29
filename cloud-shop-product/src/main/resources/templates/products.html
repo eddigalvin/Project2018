@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+
+<link href="prod.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div ng-app="myApp2" ng-controller="myCtrl2"> 
+
+<h2>PRODUCTS BELOW HERE</h2>
+
+<h3>SEE OUR LIST OF PRODUCTS</h3>
+
+<table>
+ <tr><th>Product Id</th>
+  <th> Name</th>
+  <th> Description</th>
+  <th> Category</th>
+  <th> Stock</th>
+  <th> Price</th>
+  </tr> 
+  <tr ng-repeat="x in prods">
+    <td>{{ x.product_Id }}</td>
+    <td>{{ x.name }}</td>
+	<td>{{ x.description }}</td>
+	<td>{{ x.cat }}</td>
+	<td>{{ x.stock }}</td>
+	<td>{{ x.price  | currency:"€ "}}</td>
+  </tr>
+</table>  
+
+</div>
+
+<script>
+var app = angular.module('myApp2', []);
+app.controller('myCtrl2', function($scope, $http) {
+    $http({
+        method : "GET",
+        url : "http://localhost:8080/product/allang"
+    }).then(function mySuccess(response) {
+        $scope.prods = response.data;
+    }, function myError(response) {
+        $scope.prods = response.data;
+    });
+});
+
+var app1 = angular.module('myApp1', []);
+app.controller('myCtrl1', function($scope, $http) {
+    $http.get("http://localhost:8080/product/all")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</script>
+
+</body>
+</html>

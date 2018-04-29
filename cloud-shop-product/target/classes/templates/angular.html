@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+ASDFGHJKL;ZXCVBNMQWERTYUIO
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p ng-bind="firstname"></p>
+    <p ng-bind="lastname"></p>
+</div>
+<div ng-app="myApp1" ng-controller="myCtrl1"> 
+
+PRODUCTS BELOW HERE
+
+<p>Today's welcome message is:</p>
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<script>
+var app1 = angular.module('myApp1', []);
+app.controller('myCtrl1', function($scope, $http) {
+    $http.get("http://localhost:8080/product/all")
+    .then(function(response) {
+        $scope.myWelcome = response.jsonp;
+    });
+});
+</script>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";    
+});
+</script>
+
+<p>Use the ng-bind directive to bind the innerHTML of an element to a property in the data model.</p>
+
+</body>
+</html>

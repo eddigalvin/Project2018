@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body>
+<div class="alert alert-danger" ng-show="error">
+	There was a problem logging in. Please try again.
+</div>
+ <div class="container" ng-app="postApp" ng-controller="postController">   
+
+<form role="form" ng-submit="submitForm()">
+	<div class="form-group">
+		<label for="username">Email:</label> <input type="text"
+			class="form-control" id="email" name="email" ng-model="user.email"/>
+	</div>
+	<div class="form-group">
+		<label for="password">Password:</label> <input type="password"
+			class="form-control" id="password" name="password" ng-model="user.password"/>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form> 
+Message {{message}}
+</div>
+
+<script>
+var app = angular.module('postApp', []);
+postApp.controller('postController', function($scope, $http) {
+	$scope.user={};
+	$scope.submitForm()=function(){
+    $http({
+        method : "GET",
+        url : "http://localhost:8120/customer/login1",
+        	data    : $scope.user
+    }).then(function mySuccess(response) {
+        $scope.message = response.data;
+    }, function myError(response) {
+        $scope.message = response.data;
+    });
+  }; 
+});
+</script>
+
+<script>
+var postApp1 = angular.module('postApp1', []);
+    postApp.controller('postController1', function($scope, $http) {
+      $scope.user = {};
+        $scope.submitForm = function() {
+        $http({
+          method  : 'POST',
+          url     : "http://localhost:8120/login1",
+          data    : $scope.user,
+          headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
+         })
+          .success(function(data) {
+            if (data.errors) {
+              $scope.errorName = data.errors.name;
+              $scope.errorUserName = data.errors.username;
+              $scope.errorEmail = data.errors.email;
+            } else {
+              $scope.message = data.message;
+            }
+          });
+        };
+    });   
+    </script>
+
+
+    <script>
+    var app = angular.module('myApp2', []);
+app.controller('myCtrl2', function($scope, $http) {
+    $http({
+        method : "GET",
+        url : "http://localhost:8080/product/allang"
+    }).then(function mySuccess(response) {
+        $scope.prods = response.data;
+    }, function myError(response) {
+        $scope.prods = response.data;
+    });
+});
+</script>
+
+<script>
+
+var app1 = angular.module('myApp1', []);
+app.controller('myCtrl1', function($scope, $http) {
+    $http.get("http://localhost:8080/product/all")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</script>
+    
+   
+    
+</body>
+</html>

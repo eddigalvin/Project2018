@@ -1,0 +1,32 @@
+<table>
+   <th:block th:each="product : $(prods)">
+      <tr>
+         <td th:text="${product.product_id}">...</td>
+         <td th:text="${product.name}">...</td>
+      </tr>
+      <tr>
+         <td colspan="2" th:text="${product.price}">...</td>
+      </tr>
+   </th:block>
+</table>
+
+<table>  
+  <tr th:each="product : ${prods}">
+        
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}">Text ...</td>
+    </tr> 
+    </table>  
+    
+     <table>
+   <th:block th:each="product : $(prods)">
+      <tr>
+         <td th:text="${product.product_id}">...</td>
+         <td th:text="${product.name}">...</td>
+      </tr>
+      <tr>
+         <td colspan="2" th:text="${product.price}">...</td>
+      </tr>
+   </th:block>
+</table> 
+   
